@@ -1,6 +1,6 @@
-start_ip = '103.136.43.0.'
-end_ip = '103.136.43.255.'
-count = 256
+start_ip = '104.166.148.0.'
+end_ip = '104.166.151.255.'
+count = 1024
 
 def generate(ip):
 
@@ -22,22 +22,30 @@ def generate(ip):
 start_ip_list = generate(start_ip)
 end_ip_list = generate(end_ip)
 
-def generate_range_ip(ip_list, count):
+def generate_range_ip(ip_list, end_ip, count):
     for i in range(count):
-        print(f'{ip_list[0]}.{ip_list[1]}.{ip_list[2]}.{ip_list[3]}')
 
         if ip_list[0] == 255:
             break
 
-        if ip_list[1] == 255:
+        elif ip_list[1] == 255:
             ip_list[0] += 1
+            print(f'{ip_list[0]}.{ip_list[1]}.{ip_list[2]}.{ip_list[3]} - count {i}')
+            ip_list[1] = 0
 
-        if ip_list[2] == 255:
+        elif ip_list[2] == 255:
             ip_list[1] += 1
+            print(f'{ip_list[0]}.{ip_list[1]}.{ip_list[2]}.{ip_list[3]} - count {i}')
+            ip_list[2] = 0
 
-        if ip_list[3] == 255:
+        elif ip_list[3] == 255:
             ip_list[2] += 1
+            print(f'{ip_list[0]}.{ip_list[1]}.{ip_list[2]}.{ip_list[3]} - count {i}')
+            ip_list[3] = 0
 
-        ip_list[3] += 1
+        else:
+            print(f'{ip_list[0]}.{ip_list[1]}.{ip_list[2]}.{ip_list[3]} - count {i}')
+            ip_list[3] += 1
 
-generate_range_ip(start_ip_list, count)
+
+generate_range_ip(start_ip_list, end_ip_list, count)
