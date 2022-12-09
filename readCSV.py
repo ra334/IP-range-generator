@@ -19,6 +19,3 @@ class CSV_Reader:
 
         return return_arr
 
-cve_test = CSV_Reader()
-
-print(cve_test.reading())
